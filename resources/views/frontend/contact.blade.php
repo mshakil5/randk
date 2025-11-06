@@ -20,9 +20,9 @@
         </nav>
       </div>
     </section>
-    <div class="mt-5"></div>
+    {{-- <div class="mt-5"></div> --}}
 
-    @include('frontend.partials.gallery')
+    {{-- @include('frontend.partials.gallery') --}}
 
     @include('frontend.partials.contact')
 @endsection

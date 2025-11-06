@@ -20,7 +20,7 @@
         </nav>
       </div>
     </section>
-
+    <div class="mt-5"></div>
     @include('frontend.partials.gallery')
 
 @endsection

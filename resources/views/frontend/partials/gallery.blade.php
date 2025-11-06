@@ -38,9 +38,10 @@
         }
 
         .category-list .list-group-item.active {
-            background: linear-gradient(90deg, var(--accent), #6610f2);
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(13, 110, 253, 0.12);
+          background: linear-gradient(90deg, #00c6ff, #0072ff);
+          color: #fff;
+          box-shadow: 0 6px 18px rgba(0, 114, 255, 0.25);
+          border: none;
         }
 
         /* Modal large image */
@@ -94,7 +95,7 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div>
                                     <strong id="resultsLabel">All images</strong>
-                                    <span class="text-muted ms-2" id="resultsCount">(0)</span>
+                                    <span class="text-muted ms-2 d-none" id="resultsCount">(0)</span>
                                 </div>
                                 <!-- mobile toggle for categories -->
                                 <div class="d-md-none">
@@ -205,7 +206,7 @@
                 if (cat === 'All') a.classList.add('active');
                 a.dataset.category = cat;
                 a.innerHTML =
-                    `${cat} <span class='small text-muted ms-2'>${cat==='All'?IMAGES.length:IMAGES.filter(i=>i.category.includes(cat)).length}</span>`;
+                    `${cat} <span class='small text-muted ms-2 d-none'>${cat==='All'?IMAGES.length:IMAGES.filter(i=>i.category.includes(cat)).length}</span>`;
                 a.addEventListener('click', () => selectCategory(cat, a));
                 categoryList.appendChild(a);
             });
@@ -213,7 +214,10 @@
 
         function buildGrid(list) {
             galleryGrid.innerHTML = '';
-            list.forEach((item, idx) => {
+
+            const visibleList = list.slice(0, 9);
+
+            visibleList.forEach((item, idx) => {
                 const col = document.createElement('div');
                 col.className = 'col';
 
@@ -222,21 +226,17 @@
                 card.title = item.title;
                 card.tabIndex = 0;
                 card.setAttribute('role', 'button');
-                card.dataset.index = idx; // index in filtered list for viewer navigation
+                card.dataset.index = idx;
 
                 const img = document.createElement('img');
                 img.loading = 'lazy';
                 img.src = item.thumb;
                 img.alt = item.title;
 
-                const overlay = document.createElement('div');
-                overlay.className = 'position-absolute bottom-0 start-0 w-100 p-2';
-
                 card.appendChild(img);
                 col.appendChild(card);
                 galleryGrid.appendChild(col);
 
-                // click and keyboard
                 card.addEventListener('click', () => openViewer(idx));
                 card.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -246,7 +246,7 @@
                 });
             });
 
-            resultsCount.textContent = `(${list.length})`;
+            resultsCount.textContent = `(${visibleList.length})`;
             resultsLabel.textContent = activeCategory === 'All' ? 'All Images' : activeCategory;
         }
 
