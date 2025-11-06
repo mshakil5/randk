@@ -31,6 +31,7 @@
                 <select name="page" id="page" class="form-control">
                   <option value="">Select</option>
                   <option value="Service">Service</option>
+                  <option value="Gallery">Gallery</option>
                   <option value="About">About</option>
                   <option value="Contact">Contact</option>
                 </select>
