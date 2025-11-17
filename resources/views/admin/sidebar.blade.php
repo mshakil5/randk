@@ -107,7 +107,7 @@
                     <p>Categories</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-none">
                 <a href="{{ route('tags.index') }}" class="nav-link {{ Route::is('tags.index') ? 'active' : '' }}">
                     <i class="fas fa-tags nav-icon"></i>
                     <p>Tags</p>

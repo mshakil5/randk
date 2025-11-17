@@ -36,7 +36,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#"><span>Commercial Cleaning</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <a href="#"><span>Industrial Cleaning</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                     @foreach($industrialProducts as $industrialProduct)
                         <li><a href="{{ route('service.show', $industrialProduct->slug) }}">{{ $industrialProduct->title }}</a></li>
